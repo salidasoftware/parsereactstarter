@@ -7,6 +7,7 @@
   },
   "author": "Salida Software Inc.",
   "dependencies": {
+    "bluebird": "^3.0.5",
     "browserify": "^12.0.1",
     "flux": "^2.1.1",
     "foundation-sites": "^5.5.3",
@@ -18,6 +19,7 @@
     "gulp-util": "^3.0.7",
     "history": "^1.13.0",
     "jquery": "^2.1.4",
+    "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.1",

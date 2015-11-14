@@ -1,22 +1,49 @@
 "use strict";
 
 var React = require('react');
-var Router = require('react-router');
-var Link = Router.Link;
+var Router = require('react-router').Router;
+var Link = require('react-router').Link;
+var History = require('react-router').History;
 var RegisterForm = require('./RegisterForm');
 var AnonymousMixin = require('../../mixins/AnonymousMixin');
 var toastr = require('toastr');
+var UserActions = require('../../actions/userActions');
+var UserStore = require('../../stores/userStore');
 
 var RegisterPage = React.createClass({
 	
-	mixins: [Router.Navigation, AnonymousMixin],
+	mixins: [History, AnonymousMixin],
 
 	componentWillMount: function() {
-		
+		UserStore.addActionListener(UserActions.types.USER_REGISTERING, this._onRegistering);
+        UserStore.addActionListener(UserActions.types.USER_REGISTERED, this._onRegistered);
+        UserStore.addActionListener(UserActions.types.USER_REGISTER_ERROR, this._onRegisterError);
+	},
+    
+    componentWillUnmount: function() {
+		UserStore.removeActionListener(UserActions.types.USER_REGISTERING, this._onRegistering);
+        UserStore.removeActionListener(UserActions.types.USER_REGISTERED, this._onRegistered);
+        UserStore.removeActionListener(UserActions.types.USER_REGISTER_ERROR, this._onRegisterError);
+	},
+    
+    _onRegistering: function() {
+		this.setState({registering: true});
+	},
+    
+    _onRegistered: function() {
+        this.setState({registering: false});
+		//toastr.success("Welcome!");
+        this.history.pushState(null, '/');
+	},
+    
+    _onRegisterError: function() {
+		this.state.errors.signup = UserStore.getRegisterError();
+        this.setState({errors: this.state.errors, registering: false});	
 	},
 	
 	getInitialState: function() {
 		return {
+            registering: false,
 			credentials: { email: '', password: '', password_confirmation: '' },
 			errors: {}
 		};
@@ -25,6 +52,10 @@ var RegisterPage = React.createClass({
 	registerFormIsValid: function() {
 		var formIsValid = true;
 		this.state.errors = {};
+        if(this.state.credentials.email.length == 0) {
+			this.state.errors.email = 'Email is required';
+			formIsValid = false;
+		}
 		if(this.state.credentials.password.length < 3) {
 			this.state.errors.password = 'Password too short';
 			formIsValid = false;
@@ -42,22 +73,10 @@ var RegisterPage = React.createClass({
 		if(!this.registerFormIsValid()){
 			return;
 		}
-		
-		var _this = this;
-		
-		toastr.error("Registration not implemeted yet!");
-		
-		//TODO create user and then if successful
-		//toastr.success("Registration successful.");
-		//_this.transitionTo('login');
-					
-		//if failed
-		//toastr.error("Registration failed. "+error);
-		//this.setState({errors: this.state.errors});
-		
+        UserActions.register(this.state.credentials);
 	},
 	
-	setCredentialsState: function() {
+	setCredentialsState: function(event) {
 		var field = event.target.name;
 		var value = event.target.value;
 		this.state.credentials[field] = value;
@@ -68,6 +87,7 @@ var RegisterPage = React.createClass({
 		return (
 			<div>
 				<RegisterForm
+                    registering={this.state.registering}
 					credentials={this.state.credentials}
 					onRegister={this.register}
 					onChange={this.setCredentialsState}

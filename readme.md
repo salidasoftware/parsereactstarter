@@ -8,6 +8,11 @@ Install the node dependencies
 
     npm install
     
+Copy and edit config.js
+
+    cp config.js.example config.js
+    vi config.js
+    
 Run the application (hosted locally)
 
     gulp

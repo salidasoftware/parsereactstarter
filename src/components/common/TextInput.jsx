@@ -16,24 +16,25 @@ var TextInput = React.createClass({
 
 	render: function() {
 	
-		var wrapperClass = "form-group";
+        var errorMessage = (<span></span>);
+        var labelClass = "";
 		if(this.props.error && this.props.error.length > 0) {
-			wrapperClass += " " + "has-error";
-		} 
+            labelClass = "error";
+            errorMessage = (<small className="error">{this.props.error}</small>);
+		}    
 	
 		return (
-			<div className={wrapperClass}>
-				<label htmlFor={this.props.name}>{this.props.label}</label>
-				<div className="field">
-					<input type={this.props.type}
-						name={this.props.name}
-						className="form-control"
-						placeholder={this.props.placeholder}
-						ref={this.props.name}
-						value={this.props.value}
-						onChange={this.props.onChange} />
-					<div className="input">{this.props.error}</div>
-				</div>
+			<div>
+				<label htmlFor={this.props.name} className={labelClass}>{this.props.label}
+                    <input type={this.props.type}
+                        name={this.props.name}
+                        className="form-control"
+                        placeholder={this.props.placeholder}
+                        ref={this.props.name}
+                        value={this.props.value}
+                        onChange={this.props.onChange} />
+                </label>
+				{errorMessage}
 			</div>	
 		);
 	}

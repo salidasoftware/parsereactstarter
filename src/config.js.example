@@ -1,0 +1,4 @@
+module.exports = {
+    parse_app_id : 'ADD YOUR PARSE APP ID HERE',
+    parse_app_key : 'ADD YOUR PARSE JAVASCRIPT KEY HERE'
+};
