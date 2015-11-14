@@ -1,6 +1,6 @@
 # ParseReactStarter
 
-This is an template aaplication that contains all the setup work for a React application hosted on Parse.
+This is an template application that contains all the setup work for a React application hosted on Parse.
 
 ## Getting Started
 
