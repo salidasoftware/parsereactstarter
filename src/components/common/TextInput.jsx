@@ -20,7 +20,7 @@ var TextInput = React.createClass({
         var labelClass = "";
 		if(this.props.error && this.props.error.length > 0) {
             labelClass = "error";
-            errorMessage = (<small className="error">{this.props.error}</small>);
+            errorMessage = (<div className="alert callout">{this.props.error}</div>);
 		}    
 	
 		return (

@@ -18,9 +18,13 @@ var config = {
 		js: './src/**/*.js',
 		jsx: './src/**/*.jsx',
 		images: './src/images/*',
+        fonts: [
+            'node_modules/font-awesome/fonts/*'
+        ],
 		css: [
-			'node_modules/foundation-sites/css/foundation.min.css',
-			'node_modules/toastr/build/toastr.css'
+			'node_modules/foundation-sites/dist/foundation.min.css',
+			'node_modules/toastr/build/toastr.css',
+            'node_modules/font-awesome/css/font-awesome.css'
 		],
 		dist: './public',
 		mainJs: './src/main.jsx'
@@ -72,6 +76,12 @@ gulp.task('css', function(){
 		.pipe(gulp.dest(config.paths.dist + '/css'))
 });
 
+gulp.task('fonts', function(){
+	gulp.src(config.paths.fonts)
+		.pipe(gulp.dest(config.paths.dist + '/fonts'))
+		.pipe(connect.reload());
+});
+
 gulp.task('lint', function(){
 	return gulp.src(config.paths.js)
 		.pipe(lint({config: 'eslint.config.json'}))
@@ -84,5 +94,5 @@ gulp.task("watch", function(){
 	gulp.watch(config.paths.jsx, ['js', 'lint']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'images', 'lint', 'open', 'watch']);
-gulp.task('build', ['html', 'js', 'css', 'images', 'lint']);
+gulp.task('default', ['html', 'js', 'css', 'fonts', 'images', 'lint', 'open', 'watch']);
+gulp.task('build', ['html', 'js', 'css', 'fonts', 'images', 'lint']);

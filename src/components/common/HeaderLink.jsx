@@ -5,7 +5,7 @@ var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var History = require('react-router').History;
-var _ = require('lodash');
+var _ = require('underscore');
 
 var HeaderLink = React.createClass({
 	
@@ -33,7 +33,7 @@ var HeaderLink = React.createClass({
 		}
 		
 		return (
-			<li className={active}><Link to={this.props.to}>{this.props.children}</Link></li>		
+			<li className={active}><Link style={{color: 'black'}} to={this.props.to}>{this.props.children}</Link></li>		
 		);
 	}
 });

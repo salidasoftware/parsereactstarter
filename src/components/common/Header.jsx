@@ -22,26 +22,21 @@ var Header = React.createClass({
 		}
 		
 		return (
-		
-			<nav className="top-bar" data-topbar role="navigation">
-				<ul className="title-area">
-					<li className="name">
-						<h1><Link to="/">ParseReactStarter</Link></h1>
-					</li>
-					<li className="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-				</ul>
-				
-				<section className="top-bar-section">
-					<ul className="right">
-						<HeaderLink to="/">Home</HeaderLink>
-						{authLink}
-					</ul>
-					
-					<ul className="left">
-						
-					</ul>
-				</section>
-			</nav>
+            
+            <div className="top-bar">
+                <div className="top-bar-left">
+                    <ul className="dropdown menu" data-dropdown-menu>
+                        <li className="menu-text">ParseReactStarter</li>
+                    </ul>
+                </div>
+                <div className="top-bar-right">
+                    <ul className="menu">
+                        <HeaderLink to="/">Home</HeaderLink>
+                        <HeaderLink to="/states">States</HeaderLink>
+                        {authLink}
+                    </ul>
+                </div>
+            </div>
 		
 		);
 	}

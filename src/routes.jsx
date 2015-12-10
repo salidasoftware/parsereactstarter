@@ -14,6 +14,7 @@ var NotFoundPage = require('./components/NotFoundPage');
 var LoginPage = require('./components/users/LoginPage');
 var LogoutPage = require('./components/users/LogoutPage');
 var RegisterPage = require('./components/users/RegisterPage');
+var StatesPage = require('./components/states/StatesPage');
 
 var routes = (
 
@@ -24,6 +25,7 @@ var routes = (
 			<Route path="login" component={LoginPage} />
 			<Route path="logout" component={LogoutPage} />
 			<Route path="register" component={RegisterPage} />
+            <Route path="states" component={StatesPage} />
 			<Route path="*" component={NotFoundPage}/>
 		</Route>
 	</Router>

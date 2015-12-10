@@ -27,3 +27,5 @@ build/Release
 node_modules
 .parse.local
 src/config.js
+cloud/fanout_config.js
+cloud/parse_config.js

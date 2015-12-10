@@ -9,7 +9,7 @@ var AuthenticatedMixin = {
     componentWillMount: function(transition){
         var user = UserStore.getCurrentUser();
         if(user == null) {
-            this.history.pushState(null, '/');
+            this.history.pushState(null, '/login');
         }
     }
 };

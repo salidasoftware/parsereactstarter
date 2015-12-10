@@ -8,13 +8,11 @@ var App = React.createClass({
 		return (			
 			<div>
 				<Header />
-				<div className="container-fluid">
-					<div className="row">
-						<div className="large-12 columns">
-							{this.props.children}
-						</div>
-					</div>
-				</div>
+                <div className="row">
+                    <div className="large-12 columns">
+                        {this.props.children}
+                    </div>
+                </div>
 			</div>
 		);
 		

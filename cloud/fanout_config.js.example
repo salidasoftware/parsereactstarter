@@ -1,0 +1,4 @@
+module.exports = {
+	realm_id : '',
+	realm_key : ''
+};
