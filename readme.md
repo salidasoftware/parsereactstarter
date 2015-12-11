@@ -23,4 +23,5 @@ To deploy, you'll need to configure the Parse CLI with [these instructions](http
 
 Then you'll be able to simply do 
 
+    gulp build
     parse deploy
